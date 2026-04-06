@@ -1,6 +1,14 @@
-import { useState } from 'react'
+import { useState } from "react";
 
-const categories = ["food", "housing", "utilities", "transport", "entertainment", "salary", "other"];
+const categories = [
+  "food",
+  "housing",
+  "utilities",
+  "transport",
+  "entertainment",
+  "salary",
+  "other",
+];
 
 function TransactionForm({ onAddTransaction }) {
   const [description, setDescription] = useState("");
@@ -18,7 +26,11 @@ function TransactionForm({ onAddTransaction }) {
       amount: parseFloat(amount),
       type,
       category,
-      date: new Date().toISOString().split('T')[0],
+      // this line generates today's date as a YYYY-MM-DD string,
+      //new Date() creates a Date object for right now
+      //.toISOString() converts it to something like "2026-02-02T15:30:00.000Z"
+      //.split('T')[0] splits on the T and takes the first part: "2026-02-02"
+      date: new Date().toISOString().split("T")[0],
     });
 
     setDescription("");
@@ -48,8 +60,10 @@ function TransactionForm({ onAddTransaction }) {
           <option value="expense">Expense</option>
         </select>
         <select value={category} onChange={(e) => setCategory(e.target.value)}>
-          {categories.map(cat => (
-            <option key={cat} value={cat}>{cat}</option>
+          {categories.map((cat) => (
+            <option key={cat} value={cat}>
+              {cat}
+            </option>
           ))}
         </select>
         <button type="submit">Add</button>
@@ -58,4 +72,4 @@ function TransactionForm({ onAddTransaction }) {
   );
 }
 
-export default TransactionForm
+export default TransactionForm;

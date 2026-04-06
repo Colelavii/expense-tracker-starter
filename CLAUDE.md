@@ -15,11 +15,18 @@ Expense tracker starter app built with React 19 and Vite 7. This is a learning p
 
 ## Architecture
 
-Single-page React app with no routing. All application logic lives in `src/App.jsx` as one monolithic component using `useState` hooks for state management. No external state management library.
-
-Key state: `transactions` array of `{id, description, amount, type, category, date}` objects, plus form input fields and filter controls.
+Single-page React app with no routing. Uses `useState` hooks for state management with no external state library.
 
 Entry point: `index.html` → `src/main.jsx` (StrictMode) → `src/App.jsx`.
+
+### Component structure
+
+- **`App.jsx`** — Root component. Owns the `transactions` array state and passes it down to children.
+- **`Summary.jsx`** — Computes and displays `totalIncome`, `totalExpenses`, and `balance` from the `transactions` prop.
+- **`TransactionForm.jsx`** — Owns form input state (`description`, `amount`, `type`, `category`). Calls `onAddTransaction` prop on submit.
+- **`TransactionList.jsx`** — Owns filter state (`filterType`, `filterCategory`). Receives `transactions` prop and renders filtered table.
+
+Transaction shape: `{id, description, amount (number), type, category, date}`.
 
 Styling is plain CSS (`App.css`, `index.css`), not CSS-in-JS.
 

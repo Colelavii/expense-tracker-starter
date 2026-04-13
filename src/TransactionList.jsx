@@ -79,7 +79,7 @@ function TransactionList({ transactions, onDeleteTransaction }) {
                   onClick={() => {
                     if (
                       window.confirm(
-                        `Are you sure you want to delete this transaction?"${t.description}"?`,
+                        `Are you sure you want to delete this transaction - ${t.description}?`,
                       )
                     ) {
                       onDeleteTransaction(t.id);
